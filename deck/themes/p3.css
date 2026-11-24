@@ -1,0 +1,295 @@
+/* p3 테마 「주황 면」(2026-11-24 사용자가 고른 시안 B). body.theme-p3 아래에서 deck.css 의 변수를 덮어쓴다.
+   변수 이름은 바꾸지 않는다(kit 부품이 이 변수로 그려진다). transition·animation·backdrop-filter 를 쓰지 않는다. 움직임은 장면 코드의 render(lt) 가 계산한다.
+   색의 역할: 주황 #FF5B14 은 구조와 강조(넓은 면, 그 위 글자는 늘 #141414). 연두 #C6FF4A 은 승인 표시에만. 밝은 면 #F7F7F5 은 짚는 말과 원문 종이.
+   명도 대비: --ink 바탕 위 17.4, 면 #1F1F1F 위 15.6 / --dim 바탕 위 10.6, 면 위 9.2 / 주황 위 #141414 5.9 / 주황 글자 #FF7A3D 바탕 위 7.1, 면 위 6.2
+             연두 위 #141414 15.9 / 밝은 면 위 #141414 17.4, #5A5A55 6.5 / #8A8A86 면 위 4.9 */
+body.theme-p3 {
+  --bg: #141414; --ink: #F7F7F5; --dim: #C4C4BE;
+  --accent: #C6FF4A; --accent2: #FF5B14; --accent-ink: #141414;
+  --panel: #1F1F1F; --panel-ink: #F7F7F5; --line: #333333;
+  --display: "Paperlogy", "Pretendard", sans-serif; --body: "Pretendard", sans-serif;
+  --num: "Paperlogy", "Pretendard", sans-serif; --mono: "JetBrains Mono", "Pretendard", monospace;
+  --p3-orange: #FF5B14; --p3-orange-text: #FF7A3D; --p3-lime: #C6FF4A; --p3-paper: #F7F7F5; --p3-black: #141414;
+}
+body.theme-p3 #stage { font-weight: 400; }
+
+/* ── 글자 ── 제목·숫자는 Paperlogy 800~900, 본문은 Pretendard 400~600 */
+.p3-title { position: absolute; font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; line-height: 1.14; color: var(--ink); word-break: keep-all; }
+.p3-w { display: inline-block; white-space: nowrap; }
+.p3-ch { display: inline-block; white-space: pre; }
+.p3-em { color: var(--p3-orange-text); }
+.p3-title-bar { position: absolute; background: var(--p3-orange); transform-origin: 0 50%; transform: scaleX(0); pointer-events: none; }
+.p3-hero { font-size: 150px; line-height: 1.04; }
+.p3-h1 { font-size: 96px; }
+.p3-h2 { font-size: 80px; }
+.p3-h3 { font-size: 64px; line-height: 1.16; }
+.p3-h4 { font-size: 52px; line-height: 1.2; }
+.p3-body { font-size: 42px; line-height: 1.45; font-weight: 400; color: var(--ink); }
+.p3-body-s { font-size: 36px; line-height: 1.45; font-weight: 400; color: var(--ink); }
+.p3-small { font-size: 30px; line-height: 1.4; font-weight: 400; color: var(--dim); }
+.p3-dim { color: var(--dim); }
+.p3-strong { font-weight: 700; color: var(--ink); }
+.p3-num { font-family: var(--num); font-variant-numeric: tabular-nums; }
+.p3-mono { font-family: var(--mono); }
+
+/* ── 바탕 ── 평평한 숯색. 옅은 원 하나가 느리게 움직인다 */
+.p3-bg { position: absolute; inset: 0; overflow: hidden; background: var(--bg); pointer-events: none; }
+.p3-bg-deep { background: #0E0E0E; }
+.p3-bg-spot { position: absolute; left: 820px; top: -620px; width: 1500px; height: 1500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(247,247,245,.05) 0%, rgba(247,247,245,.02) 38%, rgba(247,247,245,0) 62%); }
+.p3-bg-sheet { position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(247,247,245,.07) 1.5px, rgba(247,247,245,0) 2px); background-size: 48px 48px; background-position: 24px 24px; }
+.p3-bg-bar { position: absolute; left: 0; top: 0; width: 1920px; height: 8px; background: var(--p3-orange); transform-origin: 0 50%; }
+.p3-beam { display: none; }
+.p3-sweep-clip { position: absolute; overflow: hidden; pointer-events: none; }
+
+/* ── 면(옛 이름 glass) ── 평평한 면, 둥근 모서리 20px 이하, 그림자 없음 */
+.p3-glass { position: absolute; box-sizing: border-box; border-radius: 20px; color: var(--panel-ink); background: #1F1F1F; border: 2px solid transparent; }
+.p3-glass.back { background: #1A1A1A; }
+.p3-glass-body { position: relative; box-sizing: border-box; height: 100%; padding: 40px 44px; }
+.p3-card-label, .p3-card-title, .p3-card-body { white-space: pre-line; word-break: keep-all; }
+.p3-card-label { font-size: 30px; line-height: 1.3; font-weight: 700; color: var(--p3-orange-text); margin-bottom: 14px; }
+.p3-card-title { font-family: var(--display); font-size: 48px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px; }
+.p3-card-body { font-size: 36px; line-height: 1.45; font-weight: 400; }
+
+/* ── 머리말 ── */
+.p3-header { position: absolute; left: 120px; top: 90px; display: flex; align-items: center; gap: 18px; white-space: nowrap;
+  font-size: 30px; line-height: 1.2; font-weight: 500; color: var(--dim); }
+.p3-header b { color: var(--ink); font-weight: 700; }
+.p3-tick { display: block; flex: none; width: 18px; height: 18px; border-radius: 4px; background: var(--p3-orange); }
+.p3-fiction { position: absolute; right: 120px; top: 84px; padding: 8px 20px; border-radius: 8px; background: #2A2A2A;
+  font-size: 30px; line-height: 1.2; font-weight: 600; color: var(--ink); white-space: nowrap; }
+.p3-header .p3-fiction { position: relative; right: auto; top: auto; margin-left: 10px; }
+
+/* ── 단계 표시 ── 주황 칸 172px 안의 128px 번호 */
+.p3-step { position: absolute; display: flex; align-items: flex-end; gap: 28px; }
+.p3-step-tile { width: 172px; height: 172px; flex: none; border-radius: 20px; background: var(--p3-orange); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.p3-step-n { font-family: var(--num); font-size: 128px; line-height: 1; font-weight: 900; color: var(--p3-black); letter-spacing: -0.04em; }
+.p3-step-head { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding-bottom: 6px; white-space: nowrap; }
+.p3-step-k { font-size: 30px; font-weight: 600; color: var(--dim); }
+.p3-step-t { font-family: var(--num); font-size: 56px; line-height: 1.05; font-weight: 800; color: var(--ink); }
+.p3-step-dots { display: flex; gap: 8px; margin-top: 8px; }
+.p3-step-dots i { display: block; width: 18px; height: 18px; border-radius: 4px; }
+.p3-step-dots i.past { background: #8A8A86; }
+.p3-step-dots i.now { background: var(--p3-orange); }
+.p3-step-dots i.next { background: #333333; }
+
+/* ── 영상 띠 전환 ── 영상은 위쪽(흑백), 아래 주황 띠(높이는 부품이 글 양에 맞춘다) 안에 검정 글자 */
+.p3-vt { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
+/* 영상은 어둡게 만들어졌다(시작 그림 평균 밝기 22~44/255). 흑백으로 바꾸고 밝기를 올려 고리와 판이 보이게 한다. 바탕의 검정은 대비로 다시 내린다 */
+.p3-vt-media { position: absolute; left: 0; right: 0; top: 0; bottom: 560px; overflow: hidden; filter: grayscale(1) brightness(1.75) contrast(1.3); transform-origin: 50% 40%; }
+/* 인트로 영상은 다른 둘보다 밝다(평균 44/255). 같은 값을 쓰면 판이 하얗게 날아가서 밝기를 덜 올린다 */
+.p3-vt.intro .p3-vt-media { filter: grayscale(1) brightness(1.35) contrast(1.25); }
+.p3-vt-media canvas { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+.p3-vt-shade { position: absolute; left: 0; right: 0; top: 0; bottom: 560px; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 70%, rgba(0,0,0,.25) 100%); }
+.p3-vt-band { position: absolute; left: 0; right: 0; bottom: 0; height: 560px; background: var(--p3-orange); }
+.p3-vt-text { position: absolute; left: 120px; bottom: 70px; width: 1680px; display: flex; flex-direction: column; align-items: flex-start;
+  --ink: #141414; --dim: #141414; color: #141414; }
+.p3-vt-kicker { display: flex; align-items: center; gap: 16px; font-size: 34px; line-height: 1.2; font-weight: 800; color: #141414; white-space: nowrap; margin-bottom: 26px; }
+.p3-vt-kicker .p3-tick { background: #141414; width: 16px; height: 16px; }
+.p3-vt-kicker .p3-chip { background: #141414; color: #F7F7F5; }
+.p3-vt-text .p3-title { position: relative; line-height: 1.1; color: #141414; }
+.p3-vt-text .p3-title-bar { background: #141414; }
+.p3-vt-q { font-size: 42px; line-height: 1.4; font-weight: 700; color: #141414; margin-top: 30px; max-width: 1680px; word-break: keep-all; text-wrap: balance; }
+
+/* ── 경로·승인 지점 고리 ── */
+.p3-path { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+.p3-ring { position: absolute; display: flex; flex-direction: column; align-items: center; pointer-events: none; }
+.p3-ring svg { display: block; overflow: visible; }
+.p3-ring-glyph { position: absolute; left: 0; right: 0; text-align: center; font-size: 36px; font-weight: 700; color: var(--p3-lime); }
+.p3-ring-label { font-size: 30px; line-height: 1.25; font-weight: 700; color: var(--ink); white-space: nowrap; margin-top: 4px; }
+.p3-ring-name { font-size: 30px; line-height: 1.25; font-weight: 400; color: var(--dim); white-space: nowrap; margin-top: 4px; }
+.p3-chip { position: absolute; box-sizing: border-box; padding: 14px 28px; border-radius: 999px; white-space: nowrap; border: 0;
+  background: #262626; font-size: 36px; line-height: 1.15; font-weight: 600; color: var(--ink); }
+
+/* ── 화면 틀·결과물 ── 짚는 표시는 주황 테두리(면이 아니라 선) */
+.p3-screen { position: absolute; inset: 12px; border-radius: 12px; overflow: hidden; background: #101010; }
+.p3-screen-alt { position: absolute; inset: 0; }
+.p3-shot-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 0 0; }
+.p3-mark { position: absolute; box-sizing: border-box; border: 4px solid var(--p3-orange); border-radius: 12px; pointer-events: none; }
+.p3-exhibit { position: absolute; border-radius: 12px; overflow: hidden; background: #101010; }
+.p3-exhibit canvas { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.p3-exhibit.mono { filter: grayscale(1) contrast(1.15) brightness(.9); }
+
+/* ── 인물 표시 ── */
+.p3-person { position: absolute; display: flex; align-items: center; gap: 24px; white-space: nowrap; }
+.p3-person-ring { position: relative; width: 104px; height: 104px; flex: none; }
+.p3-person-ring svg { position: absolute; inset: 0; overflow: visible; }
+.p3-person-sur { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 44px; font-weight: 800; color: var(--ink); }
+.p3-person-glyph { position: absolute; right: -10px; bottom: -6px; width: 44px; height: 44px; border-radius: 50%; background: #1F1F1F;
+  border: 2px solid #555555; box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
+.p3-person-name { font-size: 36px; line-height: 1.2; font-weight: 700; color: var(--ink); }
+.p3-person-org { font-size: 30px; line-height: 1.3; font-weight: 400; color: var(--dim); margin-top: 4px; }
+
+/* ── 다음 질문: 주황 면, 검정 글자 ── */
+.p3-nextq.p3-glass { background: var(--p3-orange); border: 0; --ink: #141414; --dim: #141414; --panel-ink: #141414; color: #141414; }
+.p3-nextq .p3-card-label { color: #141414; font-weight: 800; }
+.p3-nextq .p3-card-body { font-family: var(--display); font-weight: 800; line-height: 1.3; letter-spacing: -0.01em; }
+.p3-nextq-lead { font-size: 30px; font-weight: 600; color: #141414; }
+
+/* ═════ 레이아웃 부품 ═════ */
+
+/* 한 문장 */
+.p3-statement { position: absolute; }
+.p3-statement .p3-title { line-height: 1.1; }
+.p3-statement-lead { font-size: 30px; line-height: 1.3; font-weight: 700; color: var(--p3-orange-text); margin-bottom: 28px; white-space: nowrap; }
+.p3-statement-sub { font-size: 44px; line-height: 1.4; font-weight: 500; color: var(--dim); margin-top: 40px; word-break: keep-all; }
+
+/* 큰 숫자 */
+.p3-bignum { position: absolute; overflow: hidden; }
+.p3-bignum-d { font-family: var(--num); font-weight: 900; line-height: 1; white-space: nowrap; color: var(--p3-orange); letter-spacing: 0; }
+.p3-bignum.ink .p3-bignum-d { color: var(--ink); }
+.p3-bignum-unit { position: absolute; white-space: nowrap; color: var(--ink); font-family: var(--display); font-weight: 800; }
+.p3-vrule { position: absolute; width: 2px; background: #333333; transform-origin: 50% 0; }
+
+/* 항목 줄 */
+.p3-points { position: absolute; }
+.p3-point { position: relative; }
+.p3-point-num { position: absolute; left: 0; top: 0; font-family: var(--num); font-weight: 900; color: var(--p3-orange-text); }
+.p3-point-text { font-weight: 600; line-height: 1.3; color: var(--ink); word-break: keep-all; }
+.p3-point-note { font-size: 30px; line-height: 1.4; color: var(--dim); margin-top: 6px; word-break: keep-all; }
+
+/* 면의 색(좌우 대비·카드 격자) */
+.p3-tone-panel { background: #1F1F1F; color: var(--ink); }
+.p3-tone-orange { background: var(--p3-orange); color: #141414; --ink: #141414; --dim: #141414; }
+.p3-tone-light { background: var(--p3-paper); color: #141414; --ink: #141414; --dim: #4A4A46; }
+.p3-tone-line { background: transparent; border: 2px solid #3A3A3A; color: var(--ink); }
+
+/* 좌우 대비 */
+.p3-split { position: absolute; box-sizing: border-box; border-radius: 20px; overflow: hidden; }
+.p3-split-label { position: absolute; left: 48px; top: 40px; font-size: 30px; line-height: 1.3; font-weight: 800; color: var(--p3-orange-text); white-space: nowrap; }
+.p3-tone-orange .p3-split-label, .p3-tone-light .p3-split-label { color: #141414; }
+.p3-split-body { position: absolute; left: 48px; right: 48px; top: 44px; bottom: 44px; }
+.p3-split-label ~ .p3-split-body { top: 108px; }
+
+/* 가로 순서 */
+.p3-seq { position: absolute; box-sizing: border-box; border-radius: 16px; padding: 30px 30px 34px; display: flex; flex-direction: column; background: #1F1F1F; color: var(--ink); }
+.p3-seq-n { font-family: var(--num); font-size: 96px; line-height: 1; font-weight: 900; color: var(--p3-orange-text); }
+.p3-seq-label { margin-top: auto; font-family: var(--display); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; word-break: keep-all; }
+.p3-seq-note { font-size: 30px; line-height: 1.4; color: var(--dim); margin-top: 12px; word-break: keep-all; }
+.p3-seq-now { background: var(--p3-orange); color: #141414; }
+.p3-seq-now .p3-seq-n, .p3-seq-now .p3-seq-note { color: #141414; }
+.p3-seq-done .p3-seq-n { color: #8A8A86; }
+.p3-seq-off { background: transparent; border: 2px dashed #6A6A66; }
+.p3-seq-off .p3-seq-n { color: #8A8A86; }
+.p3-seq-off .p3-seq-label { color: var(--dim); }
+.p3-seq-group { position: absolute; height: 46px; box-sizing: border-box; border-bottom: 3px solid #8A8A86; font-size: 30px; line-height: 1.2; font-weight: 700; color: var(--dim); white-space: nowrap; }
+
+/* 짚는 말 */
+.p3-callout { position: absolute; white-space: nowrap; font-size: 34px; line-height: 1.3; font-weight: 600; padding: 10px 24px; border-radius: 10px;
+  background: var(--p3-paper); color: #141414; }
+.p3-callout b { font-weight: 800; }
+.p3-callout.card { padding: 18px 28px 20px; }
+.p3-callout-label { font-size: 34px; line-height: 1.3; font-weight: 800; color: #141414; margin-bottom: 8px; }
+.p3-callout-row { font-size: 34px; line-height: 1.4; color: #141414; }
+.p3-leader { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+.p3-leader path { stroke: var(--p3-paper); stroke-width: 3; stroke-linejoin: round; }
+.p3-leader circle { fill: var(--p3-paper); }
+
+/* 인물과 대사 */
+.p3-quote-who { position: absolute; display: flex; flex-direction: column; align-items: flex-start; }
+.p3-quote-who .p3-person-glyph { right: 6px; bottom: 6px; border-width: 3px; }
+.p3-quote-name { font-family: var(--display); font-size: 48px; line-height: 1.2; font-weight: 800; color: var(--ink); margin-top: 30px; white-space: nowrap; }
+.p3-quote-org { font-size: 30px; line-height: 1.3; color: var(--dim); margin-top: 6px; white-space: nowrap; }
+.p3-quote { position: absolute; }
+.p3-quote .p3-title { line-height: 1.2; }
+.p3-quote-label { margin-left: 48px; font-size: 30px; line-height: 1.3; font-weight: 700; color: var(--p3-orange-text); margin-bottom: 18px; white-space: nowrap; }
+.p3-quote-bar { position: absolute; left: 0; width: 10px; border-radius: 2px; background: var(--p3-orange); transform-origin: 50% 0; }
+.p3-quote-sub { margin-left: 48px; margin-top: 30px; font-size: 40px; line-height: 1.45; color: var(--dim); word-break: keep-all; }
+
+/* 원문 크게: 밝은 종이 */
+.p3-doc { position: absolute; box-sizing: border-box; border-radius: 8px; padding: 36px 56px 44px 64px; background: var(--p3-paper); color: #141414; }
+.p3-doc-label { font-size: 30px; line-height: 1.3; font-weight: 700; color: #5A5A55; padding-bottom: 16px; margin-bottom: 18px; border-bottom: 2px solid #D8D8D2; white-space: nowrap; }
+.p3-doc-line { position: relative; font-weight: 500; line-height: 1.45; margin-top: 10px; word-break: keep-all; }
+.p3-doc-line.mark { font-weight: 800; }
+.p3-doc-line.dim { color: #5A5A55; }
+.p3-doc-bar { position: absolute; left: -36px; top: .18em; bottom: .18em; width: 10px; border-radius: 2px; background: var(--p3-orange); transform-origin: 50% 0; }
+
+/* 카드 격자 */
+.p3-tile { position: absolute; box-sizing: border-box; border-radius: 20px; padding: 40px 44px; display: flex; flex-direction: column; }
+.p3-tile-n { font-family: var(--num); font-size: 110px; line-height: 1; font-weight: 900; color: var(--p3-orange-text); }
+.p3-tone-orange .p3-tile-n { color: #141414; }
+.p3-tile-title { margin-top: auto; font-family: var(--display); font-size: 48px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; white-space: pre-line; word-break: keep-all; }
+.p3-tile-text { font-size: 36px; line-height: 1.4; color: var(--dim); margin-top: 16px; white-space: pre-line; word-break: keep-all; }
+
+/* 표 */
+.p3-table { position: absolute; }
+.p3-table-head { position: absolute; left: 0; right: 0; top: 0; height: 56px; }
+.p3-th { position: absolute; top: 4px; font-size: 30px; line-height: 1.3; font-weight: 700; color: var(--dim); white-space: nowrap; }
+.p3-table-rule { position: absolute; left: 0; right: 0; height: 3px; background: var(--ink); transform-origin: 0 50%; }
+.p3-tr { position: absolute; left: 0; right: 0; color: var(--ink); line-height: 1.25; }
+.p3-tr.dim { color: var(--dim); }
+.p3-tr.em { font-weight: 700; }
+.p3-tline { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: #333333; }
+.p3-td { position: absolute; top: 0; height: 100%; display: flex; align-items: center; word-break: keep-all; }
+.p3-approve { display: inline-block; padding: 6px 18px; border-radius: 8px; background: var(--p3-lime); color: #141414; font-weight: 700; white-space: nowrap; }
+
+/* 퀴즈 */
+.p3-quiz { position: absolute; box-sizing: border-box; border-radius: 20px; overflow: hidden; background: #1F1F1F; color: var(--ink); }
+.p3-quiz-fill { position: absolute; inset: 0; background: var(--p3-orange); transform-origin: 50% 100%; transform: scaleY(0); }
+.p3-quiz-n { position: absolute; left: 40px; top: 32px; font-family: var(--num); font-size: 96px; line-height: 1; font-weight: 900; color: var(--p3-orange-text); }
+.p3-quiz-text { position: absolute; left: 40px; right: 40px; bottom: 34px; font-family: var(--display); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; word-break: keep-all; }
+.p3-quiz.on .p3-quiz-n, .p3-quiz.on .p3-quiz-text { color: #141414; }
+.p3-quiz-note { position: absolute; line-height: 1.32; font-weight: 500; color: var(--dim); word-break: keep-all; }
+.p3-quiz-note.hit { color: #141414; font-weight: 600; }
+.p3-quiz-answer { position: absolute; font-size: 40px; line-height: 1.45; font-weight: 600; color: var(--ink); word-break: keep-all; }
+
+/* 확인 목록 */
+.p3-check { position: absolute; }
+.p3-check-row { position: absolute; left: 0; right: 0; display: flex; align-items: center; }
+.p3-check-box { flex: none; width: 72px; height: 72px; box-sizing: border-box; border-radius: 14px; display: flex; align-items: center; justify-content: center; }
+.p3-check-box.pass { background: var(--p3-lime); }
+.p3-check-box.fail { background: var(--p3-orange); }
+.p3-check-box.todo { border: 3px dashed #6A6A66; }
+.p3-check-text { flex: 1; margin-left: 40px; min-width: 0; }
+.p3-check-main { font-weight: 600; line-height: 1.25; color: var(--ink); word-break: keep-all; }
+.p3-check-note { font-size: 30px; line-height: 1.4; color: var(--dim); margin-top: 4px; word-break: keep-all; }
+/* 오른쪽 배치(기본): 항목 이름은 왼쪽 한 줄, 보조 줄은 그 오른쪽 */
+.p3-check.side .p3-check-text { display: flex; align-items: center; }
+.p3-check.side .p3-check-main { flex: none; white-space: nowrap; font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+.p3-check.side .p3-check-note { flex: 1 1 auto; margin: 0 0 0 40px; line-height: 1.3; }
+.p3-check-val { flex: none; margin-left: 40px; font-family: var(--num); font-size: 48px; line-height: 1.2; font-weight: 800; color: var(--ink); white-space: nowrap; }
+
+/* 승인 지점 줄 */
+.p3-gates-line { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+.p3-gates-line path { stroke: #3A3A3A; stroke-width: 3; }
+.p3-ring.off svg circle:first-child { stroke: #6A6A66 !important; }
+.p3-gate-label { position: absolute; text-align: center; font-family: var(--display); font-weight: 800; line-height: 1.2; color: var(--ink); white-space: pre-line; word-break: keep-all; }
+.p3-gate-label.off { color: #8A8A86; }
+.p3-gate-note { position: absolute; text-align: center; font-size: 30px; line-height: 1.3; color: var(--dim); white-space: pre-line; word-break: keep-all; }
+.p3-gate-who { position: absolute; padding: 6px 16px; border-radius: 8px; background: var(--p3-lime); color: #141414; font-size: 30px; line-height: 1.3; font-weight: 700; white-space: nowrap; }
+
+/* 그린 화면 조각(ChatGPT 입력창 등). 실제 캡처가 없을 때 shot 의 draw 안에서 쓴다 */
+.p3-ui-pill { position: absolute; display: flex; align-items: center; gap: 12px; padding: 8px 22px 8px 16px; border-radius: 999px; border: 1px solid #3A3A3A;
+  background: #1C1C1C; font-size: 40px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+.p3-ui-pill i { display: block; width: 18px; height: 18px; border-radius: 50%; background: var(--ink); }
+.p3-ui-comp { position: absolute; border-radius: 30px; border: 1px solid #3A3A3A; background: #1C1C1C; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; }
+.p3-ui-file { display: inline-flex; align-items: center; gap: 12px; padding: 6px 20px 6px 12px; border-radius: 14px; background: #262626;
+  border: 1px solid #3A3A3A; font-size: 36px; line-height: 1.35; color: var(--ink); white-space: nowrap; }
+.p3-ui-plus { width: 64px; height: 64px; border-radius: 50%; border: 1px solid #3A3A3A; display: flex; align-items: center; justify-content: center;
+  font-size: 40px; font-weight: 300; line-height: 1; color: var(--ink); }
+.p3-ui-send { width: 64px; height: 64px; border-radius: 50%; background: var(--ink); color: var(--bg); display: flex; align-items: center; justify-content: center; }
+
+/* ── kit 부품을 이 파트에 맞춘다(읽어야 하는 글자는 30px 이상). 대화의 사용자 말은 밝은 면(주황 면을 아낀다) ── */
+body.theme-p3 .kit-frame { background: #161616; color: #F7F7F5; border-radius: 12px; box-shadow: none; border: 2px solid #2E2E2E; }
+body.theme-p3 .kit-bar { height: 58px; border-bottom-color: #2E2E2E; }
+body.theme-p3 .kit-bar i { background: #3A3A3A; }
+body.theme-p3 .kit-url { font: 500 28px/1 var(--mono); color: var(--dim); }
+body.theme-p3 .kit-name { font: 600 30px/1 var(--body); color: var(--dim); }
+body.theme-p3 .kit-bubble { font-size: 32px; line-height: 1.45; background: #1F1F1F; color: #F7F7F5; border-color: #2E2E2E; }
+body.theme-p3 .kit-user .kit-bubble { background: var(--p3-paper); color: #141414; border-color: transparent; }
+body.theme-p3 .kit-tool .kit-bubble { font-size: 30px; color: var(--dim); background: transparent; }
+body.theme-p3 .kit-terminal { background: #0E0E0E; color: #EDEDE9; }
+body.theme-p3 .kit-terminal .kit-body { font: 400 30px/1.6 var(--mono); }
+body.theme-p3 .kit-prompt { color: var(--p3-orange-text); }
+body.theme-p3 .kit-out.ok { color: var(--p3-lime); }
+body.theme-p3 .kit-out.warn { color: #FFB27A; }
+body.theme-p3 .kit-out.err { color: #FF8A8A; }
+
+/* 사람 칸(THEME.people) */
+.p3-people-n { position: absolute; white-space: nowrap; line-height: 1; }
+.p3-people-v { font-family: var(--num); font-weight: 900; line-height: 1; color: var(--p3-orange-text); letter-spacing: -0.02em; }
+.p3-people-u { font-family: var(--display); font-weight: 800; color: var(--ink); margin-left: 8px; }
+.p3-people-item { position: absolute; box-sizing: border-box; border-radius: 14px; background: var(--panel); border: 2px solid var(--line); }
+.p3-people-t { position: absolute; font-family: var(--display); font-weight: 800; line-height: 1.2; color: var(--ink); white-space: nowrap; letter-spacing: -0.02em; }

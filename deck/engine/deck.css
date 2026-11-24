@@ -1,0 +1,62 @@
+/* deck.css — 덱 공통 바탕. 색·서체·질감은 themes/pN.css 가 body.theme-pN 아래 변수로 덮어쓴다.
+   이 파일의 색은 회색 자리 표시 값이다. 테마 없이 쓰지 않는다. */
+:root {
+  --bg: #8a8a8a; --ink: #1a1a1a; --dim: rgba(26,26,26,.6); --accent: #ffffff; --accent2: #444444;
+  --panel: rgba(255,255,255,.9); --panel-ink: #1a1a1a; --line: rgba(0,0,0,.18);
+  --display: "Pretendard", sans-serif; --body: "Pretendard", sans-serif;
+  --num: "Anton", "Pretendard", sans-serif; --mono: "JetBrains Mono", "Pretendard", monospace;
+  /* 글자 크기(1920×1080 기준). 강의실 뒷줄에서 읽히도록 본문은 --fs-small 아래로 내리지 않는다 */
+  --fs-hero: 150px; --fs-title: 88px; --fs-sub: 56px; --fs-body: 42px; --fs-small: 30px;
+  /* 안전 영역: 좌우 120px, 위 90px, 아래 100px(진행 막대·쪽 번호 자리) */
+  --pad-x: 120px; --pad-top: 90px; --pad-bottom: 100px;
+}
+html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+#wrap { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+#stage { position: relative; overflow: hidden; background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-kerning: normal; -webkit-font-smoothing: antialiased; word-break: keep-all; }
+.cam, .top, .scene { position: absolute; inset: 0; }
+.scene { overflow: hidden; }
+.a { position: absolute; }
+.full { position: absolute; inset: 0; }
+.center { position: absolute; left: 0; right: 0; text-align: center; }
+.safe { position: absolute; left: var(--pad-x); right: var(--pad-x); top: var(--pad-top); bottom: var(--pad-bottom); }
+.display { font-family: var(--display); font-weight: 900; letter-spacing: -0.04em; line-height: 1.08; }
+.t-hero { font-size: var(--fs-hero); } .t-title { font-size: var(--fs-title); } .t-sub { font-size: var(--fs-sub); }
+.t-body { font-size: var(--fs-body); line-height: 1.45; } .t-small { font-size: var(--fs-small); line-height: 1.4; }
+.mono { font-family: var(--mono); } .num { font-family: var(--num); font-variant-numeric: tabular-nums; }
+
+/* 발표 모드 UI(렌더 모드에는 없다) */
+.deck-bar { position: fixed; left: 0; right: 0; bottom: 0; height: 4px; background: var(--accent); transform-origin: 0 50%; opacity: .7; z-index: 20; }
+.deck-no { position: fixed; right: 14px; bottom: 10px; font: 500 13px/1 var(--mono); color: #fff; opacity: .45; mix-blend-mode: difference; z-index: 20; }
+.deck-notes { position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto; padding: 18px 26px 26px; white-space: pre-wrap;
+  background: rgba(10,10,10,.92); color: #eee; font: 400 20px/1.55 "Pretendard", sans-serif; display: none; z-index: 30; }
+.deck-show-notes .deck-notes { display: block; }
+.deck-black { position: fixed; inset: 0; background: #000; display: none; z-index: 40; }
+.deck-blackout .deck-black { display: block; }
+.deck-live { cursor: default; }
+
+/* kit 부품 */
+.kit-frame { position: absolute; display: flex; flex-direction: column; overflow: hidden; background: var(--panel); color: var(--panel-ink);
+  border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.28); }
+.kit-bar { flex: none; height: 54px; display: flex; align-items: center; gap: 10px; padding: 0 20px; border-bottom: 1px solid var(--line); }
+.kit-bar i { width: 14px; height: 14px; border-radius: 50%; background: var(--line); }
+.kit-url { margin-left: 14px; font: 500 24px/1 var(--mono); color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kit-body { position: relative; flex: 1; overflow: hidden; }
+.kit-phone { border-radius: 56px; border: 12px solid #111; }
+.kit-notch { flex: none; align-self: center; width: 150px; height: 30px; margin-top: 12px; border-radius: 16px; background: #111; }
+.kit-chat { position: absolute; overflow: hidden; }
+.kit-chat-rail { display: flex; flex-direction: column; row-gap: 22px; padding: 26px; }
+.kit-msg { display: flex; flex-direction: column; max-width: 78%; transform-origin: 0 100%; }
+.kit-user { align-self: flex-end; align-items: flex-end; transform-origin: 100% 100%; }
+.kit-name { font: 600 22px/1 var(--mono); color: var(--dim); margin: 0 6px 8px; }
+.kit-bubble { box-sizing: border-box; padding: 18px 26px; border-radius: 26px; font-size: 32px; line-height: 1.45; white-space: pre-wrap;
+  background: var(--panel); color: var(--panel-ink); border: 1px solid var(--line); }
+.kit-user .kit-bubble { background: var(--accent); color: var(--accent-ink, #fff); border-color: transparent; }
+.kit-tool .kit-bubble { font-family: var(--mono); font-size: 26px; background: transparent; border-style: dashed; color: var(--dim); }
+.kit-dots { font-size: 16px; letter-spacing: 4px; opacity: .5; }
+.kit-terminal { background: #111418; color: #e6e6e6; }
+.kit-terminal .kit-bar { border-color: rgba(255,255,255,.1); } .kit-terminal .kit-bar i { background: rgba(255,255,255,.22); }
+.kit-terminal .kit-url { color: rgba(255,255,255,.5); }
+.kit-terminal .kit-body { padding: 24px 30px; font: 400 28px/1.6 var(--mono); }
+.kit-line { white-space: pre-wrap; } .kit-prompt { color: var(--accent); }
+.kit-out.dim { opacity: .55; } .kit-out.ok { color: #7ee787; } .kit-out.warn { color: #f2cc60; } .kit-out.err { color: #ff7b72; }

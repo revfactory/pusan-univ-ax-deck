@@ -1,0 +1,186 @@
+/* 파트 1 테마 「아이소메트릭: 흰 모형 블록」
+ * 밝은 회백색 바탕 위에 무광 흰 블록을 30도 등각으로 쌓는다. 색은 역할을 뜻할 때만 칠한다.
+ *   코발트 = AI·에이전트가 맡은 일, 호박 = 사람의 판단·승인(글자색으로 쓰지 않는다), 회청 = 기존 업무·기존 시스템
+ * 움직임은 themes/p1.js 의 부품과 장면 코드의 render(lt) 가 계산한다. 이 파일에는 움직임을 두지 않는다. */
+
+body.theme-p1 {
+  --bg: #E9EDF1;            /* 바탕, 격자 바닥 */
+  --ink: #13202C;           /* 제목, 본문, 블록 윤곽선. 바탕 대비 14.05 */
+  --dim: #4B5A68;           /* 보조 설명, 출처. 바탕 대비 6.03 */
+  --accent: #2A55E5;        /* 코발트: 에이전트·AI 블록, 강조 단어. 바탕 대비 5.06 */
+  --accent2: #F2A93B;       /* 호박: 사람의 판단·승인 블록, 표시 띠. 위에 쓰는 글자는 --ink */
+  --accent-ink: #FFFFFF;    /* 코발트 면 위 글자. 대비 5.95 */
+  --panel: #FFFFFF;         /* 카드, 블록 윗면 */
+  --panel-ink: #13202C;     /* 카드 글자. 대비 16.53 */
+  --line: rgba(19, 32, 44, .14);
+  --slate: #3A4652;         /* 회청: 기존 업무·기존 시스템. 위의 흰 글자 9.64 */
+  --edge: rgba(19, 32, 44, .35);   /* 모든 블록 모서리의 1.5px 윤곽선 */
+  --shade: rgba(19, 32, 44, .18);  /* 흐림 없는 평행사변형 그림자 */
+  --display: "Paperlogy", sans-serif;
+  --body: "Paperlogy", sans-serif;
+  --num: "JetBrains Mono", "Paperlogy", monospace;
+  --mono: "JetBrains Mono", "Paperlogy", monospace;
+  --fs-hero: 150px; --fs-title: 88px; --fs-sub: 56px; --fs-body: 42px; --fs-small: 30px;
+}
+body.theme-p1 #stage { font-weight: 400; }
+body.theme-p1 .display { font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; }
+body.theme-p1 .display.t-hero { font-weight: 900; }
+body.theme-p1 .t-body { line-height: 1.45; }
+body.theme-p1 b, body.theme-p1 strong { font-weight: 600; }
+
+/* 글자 */
+.p1-em { color: var(--accent); font-weight: 600; }            /* 강조 단어(코발트) */
+.p1-dimtext { color: var(--dim); }
+.p1-mono { font-family: var(--mono); font-weight: 500; }
+.p1-kicker { font: 600 30px/1.2 var(--body); color: var(--dim); letter-spacing: 0; }
+
+/* 제목 */
+.p1-title { color: var(--ink); white-space: normal; }
+.p1-word { display: inline-block; white-space: nowrap; }
+.p1-syl { position: relative; display: inline-block; transform-origin: 50% 90%; }
+
+/* 머리말 */
+.p1-head { position: absolute; left: 120px; top: 40px; display: flex; align-items: center; gap: 14px;
+  font: 600 30px/1.2 var(--body); color: var(--dim); white-space: nowrap; }
+.p1-head b { color: var(--ink); font-weight: 600; }
+.p1-head svg { flex: none; overflow: visible; }
+.p1-fiction { position: absolute; right: 132px; top: 34px; padding: 6px 18px 8px; font: 600 30px/1.2 var(--body);
+  color: var(--ink); background: #FFFFFF; border: 1.5px solid var(--edge); }
+
+/* 이름표(블록 위 핀 이름표, 옆 이름표) */
+.p1-tag { position: absolute; white-space: nowrap; padding: 6px 16px 8px; font: 600 32px/1.2 var(--body);
+  color: var(--ink); background: #FFFFFF; border: 1.5px solid var(--edge); }
+.p1-tag small { display: block; font: 400 30px/1.25 var(--body); color: var(--dim); }
+.p1-tag.is-cobalt { background: var(--accent); color: #FFFFFF; border-color: #1E40B8; }
+.p1-tag.is-cobalt small { color: #FFFFFF; }
+.p1-tag.is-amber { background: var(--accent2); border-color: #C9861F; }
+.p1-tag.is-slate { background: var(--slate); color: #FFFFFF; border-color: #2A333C; }
+.p1-tag .p1-back { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: var(--accent); color: #FFFFFF; backface-visibility: hidden; }
+.p1-pin { position: absolute; width: 0; border-left: 1.5px solid var(--edge); }
+.p1-side { position: absolute; white-space: nowrap; font: 600 34px/1.2 var(--body); color: var(--ink); }
+.p1-side small { display: block; font: 400 30px/1.25 var(--body); color: var(--dim); }
+
+/* 카드(정면 판) */
+.p1-card { position: absolute; }
+.p1-card > svg { position: absolute; left: 0; top: 0; overflow: visible; }
+.p1-face { position: relative; box-sizing: border-box; background: #FFFFFF; color: var(--panel-ink);
+  border: 1.5px solid var(--edge); padding: 30px 34px; font-size: var(--fs-body); line-height: 1.4; }
+.p1-face.is-cobalt { background: var(--accent); color: #FFFFFF; }
+.p1-face.is-amber { background: var(--accent2); color: var(--ink); }
+.p1-face.is-slate { background: var(--slate); color: #FFFFFF; }
+.p1-face .p1-cap { display: block; margin-bottom: 10px; font: 600 30px/1.2 var(--body); color: var(--dim); }
+.p1-face.is-cobalt .p1-cap, .p1-face.is-slate .p1-cap { color: #FFFFFF; }
+
+/* 단계 표시 */
+.p1-step { position: absolute; }
+.p1-step-no { position: absolute; font: 700 30px/1 var(--num); color: var(--ink); transform: translate(-50%, -50%); }
+.p1-step-no.is-now { color: #FFFFFF; }
+.p1-step-txt { position: absolute; white-space: nowrap; font: 600 30px/1.2 var(--body); color: var(--dim); }
+.p1-step-txt b { color: var(--accent); font: 700 34px/1 var(--num); }
+
+/* 치수선 */
+.p1-dim-num { position: absolute; white-space: nowrap; font: 700 64px/1 var(--num); color: var(--ink); letter-spacing: -0.07em; }
+.p1-dim-num small { font: 600 36px/1 var(--body); color: var(--ink); margin-left: 6px; letter-spacing: 0; }
+
+/* 영상 제목(인트로·전환) */
+.p1-vt-panel { position: absolute; box-sizing: border-box; padding: 44px 40px 48px; }
+.p1-vt-panel > svg { position: absolute; left: 0; top: 0; overflow: visible; }
+.p1-vt-kicker { position: relative; display: flex; align-items: center; gap: 14px; margin-bottom: 22px;
+  font: 600 32px/1.2 var(--body); color: var(--dim); }
+.p1-vt-kicker b { color: var(--accent); font: 700 32px/1 var(--num); }
+.p1-vt-sub { position: relative; margin-top: 30px; font: 400 40px/1.42 var(--body); color: var(--ink); }
+
+/* 화면 캡처 틀 */
+.p1-shot { position: absolute; }
+.p1-shot > svg { position: absolute; left: 0; top: 0; overflow: visible; }
+.p1-shot-card { position: absolute; box-sizing: border-box; background: #FFFFFF; border: 1.5px solid var(--edge); padding: 12px; }
+.p1-screen { position: relative; overflow: hidden; background: #FFFFFF; border: 1px solid var(--line); }
+.p1-screen > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
+.p1-marks { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+
+/* 그린 ChatGPT 화면 */
+.p1-gpt { position: absolute; inset: 0; display: flex; flex-direction: column; background: #FFFFFF; color: var(--ink); }
+.p1-gpt-top { flex: none; height: 74px; display: flex; align-items: center; gap: 18px; padding: 0 26px; border-bottom: 1px solid var(--line); }
+.p1-gpt-btn { padding: 6px 18px 8px; font: 600 30px/1.2 var(--body); color: var(--ink); border: 1.5px solid var(--edge); background: #FFFFFF; }
+.p1-gpt-url { font: 500 26px/1 var(--mono); color: var(--dim); }
+.p1-gpt-body { position: relative; flex: 1; overflow: hidden; }
+.p1-gpt-input { flex: none; margin: 0 26px 22px; min-height: 76px; box-sizing: border-box; display: flex; align-items: center; gap: 18px;
+  padding: 10px 14px 10px 22px; border: 1.5px solid var(--edge); background: #FFFFFF; font: 400 30px/1.3 var(--body); color: var(--dim); }
+.p1-gpt-input .p1-plus { flex: none; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--edge); font: 600 34px/1 var(--body); color: var(--ink); }
+.p1-gpt-input .p1-send { flex: none; margin-left: auto; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;
+  background: var(--ink); color: #FFFFFF; font: 700 30px/1 var(--body); }
+
+/* kit 부품을 이 파트의 재질로 */
+body.theme-p1 .kit-frame { border-radius: 8px; box-shadow: none; border: 1.5px solid var(--edge); }
+body.theme-p1 .kit-url { font: 500 26px/1 var(--mono); }
+body.theme-p1 .kit-name { font: 600 30px/1.1 var(--body); color: var(--dim); }
+body.theme-p1 .kit-chat-rail { row-gap: 20px; padding: 24px 28px; }
+body.theme-p1 .kit-bubble { border-radius: 10px; font-size: 32px; line-height: 1.42; border: 1.5px solid var(--edge); }
+body.theme-p1 .kit-user .kit-bubble { background: var(--accent); color: #FFFFFF; border-color: #1E40B8; }
+body.theme-p1 .kit-tool .kit-bubble { font-size: 30px; }
+body.theme-p1 .kit-terminal { background: #13202C; color: #E9EDF1; }
+body.theme-p1 .kit-terminal .kit-body { font: 400 30px/1.55 var(--mono); }
+body.theme-p1 .kit-prompt { color: #8FA8FF; }
+
+/* ── 레이아웃 부품(2026-11-24 추가) ── */
+/* 한 문장 */
+.p1-stmt { position: absolute; }
+.p1-stmt-plate { position: absolute; width: 0; height: 0; }
+.p1-stmt-sub { position: relative; font: 400 44px/1.4 var(--body); color: var(--dim); }
+/* 큰 숫자 */
+.p1-big { position: absolute; }
+.p1-big-label { font: 600 44px/1.3 var(--body); color: var(--ink); margin-bottom: 6px; white-space: nowrap; }
+.p1-big-num { font: 700 420px/1 var(--num); letter-spacing: -0.06em; color: var(--ink); white-space: nowrap; }
+.p1-big-unit { font-family: var(--body); font-weight: 700; letter-spacing: 0; margin-left: 16px; }
+.p1-big-note { font: 400 42px/1.4 var(--body); color: var(--dim); margin-top: 18px; white-space: nowrap; }
+/* 좌우 대비 */
+.p1-split-wall { position: absolute; width: 0; height: 0; }
+.p1-half-tag { position: absolute; padding: 8px 24px 10px; font: 700 44px/1.2 var(--body); color: var(--ink);
+  background: #FFFFFF; border: 1.5px solid var(--edge); white-space: nowrap; }
+.p1-half-tag.is-cobalt { background: var(--accent); color: #FFFFFF; border-color: #1E40B8; }
+.p1-half-tag.is-slate { background: var(--slate); color: #FFFFFF; border-color: #2A333C; }
+.p1-half-tag.is-amber { background: var(--accent2); border-color: #C9861F; }
+/* 가로 순서 */
+.p1-seq-no { position: absolute; font: 700 48px/1 var(--num); color: var(--ink); transform: translate(-50%, -50%); }
+.p1-seq-no.is-on { color: #FFFFFF; }
+/* 번호 카드 */
+.p1-tile .p1-tile-n { font: 700 96px/1 var(--num); color: var(--accent); margin-bottom: 22px; }
+.p1-tile .p1-tile-t { font: 700 46px/1.25 var(--body); color: var(--ink); margin-bottom: 16px; word-break: keep-all; }
+.p1-tile .p1-tile-x { font: 400 38px/1.45 var(--body); color: var(--dim); word-break: keep-all; }
+.p1-tile.is-cobalt .p1-tile-n, .p1-tile.is-cobalt .p1-tile-t, .p1-tile.is-cobalt .p1-tile-x,
+.p1-tile.is-slate .p1-tile-n, .p1-tile.is-slate .p1-tile-t, .p1-tile.is-slate .p1-tile-x { color: #FFFFFF; }
+/* 표 */
+.p1-thead { position: absolute; display: grid; font: 600 34px/1.2 var(--body); color: var(--dim); }
+.p1-thead > div, .p1-tgrid > div { padding: 0 28px; }
+.p1-face.p1-trow { display: flex; align-items: center; font-size: 40px; line-height: 1.3; }
+.p1-tgrid { display: grid; width: 100%; align-items: center; }
+/* 퀴즈, 짚는 이름표 */
+.p1-tag.is-big { font-size: 44px; padding: 10px 24px 12px; }
+.p1-tag.is-answer { font-size: 56px; padding: 12px 28px 14px; }
+.p1-callout { font-size: 36px; line-height: 1.3; white-space: normal; padding: 10px 20px 12px; }
+/* 확인 목록 */
+.p1-chk { position: absolute; box-sizing: border-box; display: grid; grid-template-columns: 1fr auto; align-content: center;
+  column-gap: 28px; border-bottom: 1.5px solid var(--line); }
+.p1-chk-t { grid-column: 1; font: 600 42px/1.25 var(--body); color: var(--ink); }
+.p1-chk-n { grid-column: 1; margin-top: 6px; font: 400 34px/1.3 var(--body); color: var(--dim); }
+.p1-chk-v { grid-column: 2; grid-row: 1 / span 2; align-self: center; font: 700 48px/1 var(--num); color: var(--ink); white-space: nowrap; }
+/* 요청문 크게(카드 안) */
+.p1-face .p1-prompt { font: 400 36px/1.5 var(--mono); color: var(--ink); white-space: pre-wrap; }
+.p1-half-line { font: 600 44px/1.3 var(--body); color: var(--ink); white-space: nowrap; }
+.p1-big-dot { display: inline-block; margin: 0 -0.16em; }
+.p1-stmt-facts { position: relative; display: grid; column-gap: 48px; }
+.p1-stmt-fact { border-top: 3px solid var(--ink); padding-top: 18px; }
+.p1-stmt-fact-l { font: 700 44px/1.25 var(--body); color: var(--ink); }
+.p1-stmt-fact-t { margin-top: 8px; font: 400 36px/1.4 var(--body); color: var(--dim); word-break: keep-all; }
+/* 2026-11-24 2차: 새 기준(설명 34px 이상, 표 행 40px 이상, 이름표 34px 이상) */
+.p1-tag.is-big small { font-size: 34px; }
+.p1-tcell { display: flex; flex-direction: column; justify-content: center; }
+.p1-tc-m { line-height: 1.15; }
+.p1-tc-s { margin-top: 4px; font-size: 34px; font-weight: 400; line-height: 1.3; color: var(--dim); }
+.p1-face.is-slate .p1-tc-s, .p1-face.is-cobalt .p1-tc-s { color: #FFFFFF; opacity: 0.85; }
+.p1-tile-img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; box-sizing: border-box;
+  border: 1.5px solid var(--edge); margin-bottom: 22px; }
+.p1-tag .p1-role { margin-top: 10px; padding-top: 10px; border-top: 1.5px solid var(--line); font: 400 34px/1.3 var(--body); color: var(--ink);
+  white-space: normal; word-break: keep-all; }

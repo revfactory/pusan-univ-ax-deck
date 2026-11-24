@@ -1,0 +1,19 @@
+.DS_Store
+.netlify/
+
+# 작업 파일 (저장소에 올리지 않는다)
+.claude/
+_workspace/
+plan/
+brief.md
+CLAUDE.md
+진행_가이드.md
+deck/qa/
+deck/assets/gen/
+
+# 강사 전용 자료
+labs/강사용/
+labs/_검증기록.md
+
+# 프로젝트 메모리 (저장소에 올리지 않는다)
+MEMORY.md

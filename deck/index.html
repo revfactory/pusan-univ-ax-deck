@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>강의 슬라이드</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  body { margin: 0; min-height: 100vh; background: #101114; color: #f2f2f2; font-family: "Pretendard", sans-serif; }
+  main { max-width: 1280px; margin: 0 auto; padding: 64px 40px; }
+  h1 { font-size: 44px; font-weight: 900; letter-spacing: -0.03em; margin: 0 0 8px; }
+  .meta { color: #9aa0a6; font-size: 18px; margin-bottom: 48px; }
+  section { margin-bottom: 44px; }
+  h2 { font-size: 26px; margin: 0 0 16px; }
+  h2 small { color: #9aa0a6; font-weight: 400; font-size: 18px; margin-left: 10px; }
+  ol { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  a { display: block; padding: 16px 18px; border-radius: 12px; background: #1b1d22; color: inherit; text-decoration: none; border: 1px solid #2a2d34; }
+  a:hover { border-color: #6b7280; }
+  a b { display: block; font-size: 13px; color: #9aa0a6; font-weight: 500; margin-bottom: 6px; }
+  .keys { color: #9aa0a6; font-size: 15px; line-height: 1.7; border-top: 1px solid #2a2d34; padding-top: 20px; }
+</style>
+</head>
+<body>
+<main>
+  <h1 id="title"></h1>
+  <div class="meta" id="meta"></div>
+  <div id="parts"></div>
+  <div class="keys">→ Space 다음 · ← 이전 · F 전체 화면 · R 이 슬라이드 다시 · N 강사 메모 · B 검은 화면 · 숫자+Enter 챕터 안 슬라이드 이동</div>
+</main>
+<script src="manifest.js"></script>
+<script>
+  const m = window.DECK_MANIFEST || { title: '강의 슬라이드', parts: [] };
+  document.getElementById('title').textContent = m.title || '강의 슬라이드';
+  document.title = m.title || '강의 슬라이드';
+  document.getElementById('meta').textContent = m.subtitle || '';
+  const root = document.getElementById('parts');
+  for (const p of m.parts) {
+    const total = p.chapters.reduce((a, c) => a + (c.slides || 0), 0);
+    const sec = document.createElement('section');
+    const h2 = document.createElement('h2');
+    h2.textContent = p.title || p.id;
+    const small = document.createElement('small');
+    small.textContent = `${p.chapters.length}개 챕터 · ${total}장`;
+    h2.appendChild(small);
+    const ol = document.createElement('ol');
+    for (const c of p.chapters) {
+      const li = document.createElement('li'), a = document.createElement('a'), b = document.createElement('b');
+      a.href = c.file;
+      b.textContent = `${p.id.toUpperCase()} · ${c.id} · ${c.slides || 0}장`;
+      a.appendChild(b);
+      a.appendChild(document.createTextNode(c.title || c.id));
+      li.appendChild(a); ol.appendChild(li);
+    }
+    sec.appendChild(h2); sec.appendChild(ol); root.appendChild(sec);
+  }
+</script>
+</body>
+</html>

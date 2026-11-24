@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>새별시설공단 민원 안내</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;color:#193044;background:#f3f7f8;line-height:1.55}
+    *{box-sizing:border-box}[hidden]{display:none!important}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}
+    .wrap{max-width:1120px;margin:auto;padding:0 22px}.mast{background:#123d4f;color:white;padding:16px 0}.mast .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{font-size:17px;font-weight:800;letter-spacing:-.03em}.tag{font-size:12px;border:1px solid #91b7c0;border-radius:100px;padding:4px 10px;color:#dceef0}
+    .hero{background:#123d4f;color:white;padding:46px 0 54px}.eyebrow{color:#a5e6d4;font-size:12px;font-weight:800;letter-spacing:.12em}.hero h1{font-size:clamp(32px,5vw,52px);letter-spacing:-.055em;line-height:1.17;margin:9px 0 15px}.hero p{max-width:660px;margin:0;color:#d8e9ec}.hero-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.hero-nav a{color:white;text-decoration:none;border:1px solid #6e99a3;padding:8px 12px;border-radius:100px;font-size:13px}.hero-nav a:hover,.hero-nav a:focus-visible{background:#245769}
+    main{padding:34px 0 55px}.section{margin:0 0 30px}.section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:13px}.num{font-size:12px;font-weight:800;color:#16836c}.section h2{font-size:24px;letter-spacing:-.04em;margin:0}.section-desc{color:#596b77;margin:0 0 18px;font-size:14px}
+    .card{background:#fff;border:1px solid #dce7e9;border-radius:18px;box-shadow:0 8px 25px #153b4a0b;padding:24px}.calc-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:20px;align-items:stretch}.fields{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label,.field legend{font-weight:700;font-size:14px}.field small,.help{color:#637784;font-size:12px}.control{height:44px;border:1px solid #bdced3;border-radius:9px;background:white;padding:0 12px;width:100%;color:#193044}.control:focus,.check:focus-visible,.chat-choice:focus-visible{outline:3px solid #7ed9c3;outline-offset:2px}.checks{display:flex;flex-wrap:wrap;gap:8px}.check{display:inline-flex;align-items:center;gap:8px;border:1px solid #cbdadd;border-radius:9px;padding:9px 11px;font-size:13px;cursor:pointer}.check:has(input:checked){background:#e3f5ef;border-color:#59b596}.check input{accent-color:#16836c;margin:0}.check:has(input:disabled){opacity:.5;cursor:not-allowed}
+    .result{background:#eaf6f2;border:1px solid #c9e8dd;border-radius:14px;padding:24px;display:flex;flex-direction:column;justify-content:center;min-height:240px}.result.parking{background:#edf4fa;border-color:#d5e4f1}.result-label{font-weight:800;color:#42635c;font-size:13px}.amount{font-size:clamp(34px,5vw,48px);font-weight:850;letter-spacing:-.06em;line-height:1.2;margin:10px 0}.formula{font-size:14px;word-break:keep-all;margin:0 0 15px}.source{font-size:13px;font-weight:800;color:#48615d;margin-bottom:12px}.result-note{font-size:12px;color:#48615d;margin:0}.error{color:#a33e32;font-weight:700}
+    .search-row{display:flex;gap:8px}.search-row .control{flex:1}.search-row button,.clear-button{border:0;background:#16745f;color:white;border-radius:9px;padding:0 16px;font-weight:700}.search-row button:hover{background:#105b4b}.faq-count{color:#607480;font-size:13px;margin:14px 0}.faq-list{display:grid;gap:10px}.faq-item{border:1px solid #dce7e9;border-radius:12px;padding:16px 18px;background:white}.faq-item h3{font-size:15px;margin:0 0 7px;letter-spacing:-.02em}.faq-item p{margin:0 0 9px;font-size:14px}.faq-meta{color:#607480;font-size:12px}.empty{padding:18px;background:#fff5e8;border:1px solid #f2d9af;border-radius:12px}.empty p{margin:0 0 12px}.empty a{color:#096851;font-weight:700}.table-scroll{overflow-x:auto}.dept-table{width:100%;border-collapse:collapse;min-width:590px;font-size:14px}.dept-table th{text-align:left;background:#e9f2f2;color:#274c57;padding:12px}.dept-table td{padding:13px 12px;border-top:1px solid #e2e9eb}.dept-table td:nth-child(2){font-weight:700}.subhead{font-size:16px;margin:24px 0 8px}.note{font-size:12px;color:#62727b;margin:14px 0 0}
+    .demo{display:inline-block;background:#fff2da;color:#795110;border-radius:100px;font-weight:800;font-size:12px;padding:5px 10px;margin-bottom:14px}.chat-layout{display:grid;grid-template-columns:1fr 1.15fr;gap:18px}.chat-choices{display:grid;gap:8px;align-content:start}.chat-choice{text-align:left;background:#f4f9f8;border:1px solid #c9dbd9;color:#204b4a;padding:11px 13px;border-radius:9px}.chat-choice[aria-pressed="true"]{background:#dff2ea;border-color:#62b895;font-weight:700}.chat-answer{background:#f5f8fa;border-radius:12px;padding:19px;min-height:155px}.chat-answer strong{font-size:13px;color:#467283}.chat-answer p{margin:7px 0 10px}.chat-answer small{color:#647681}
+    footer{background:#123d4f;color:#dae9e9;text-align:center;padding:24px 18px;font-size:13px}
+    @media(max-width:760px){.calc-grid,.chat-layout{grid-template-columns:1fr}.hero{padding:34px 0 42px}.card{padding:18px}.result{min-height:0}.section h2{font-size:21px}}
+    @media(max-width:520px){.wrap{padding:0 15px}.fields{grid-template-columns:1fr}.mast .tag{display:none}.check{width:100%}.search-row button{padding:0 12px}}
+  </style>
+</head>
+<body>
+  <header class="mast"><div class="wrap"><div class="brand">✦ 새별시설공단 <span style="font-weight:400">민원 안내</span></div><span class="tag">가상 기관 · 실습용</span></div></header>
+  <div class="hero"><div class="wrap"><div class="eyebrow">SAEBYEOL FACILITIES GUIDE</div><h1>필요한 금액과 근거를<br>한눈에 확인하세요.</h1><p>체육센터 수강료 환불과 공영주차장 요금을 직접 계산하고, 관련 조문과 담당 부서를 확인할 수 있습니다.</p><nav class="hero-nav" aria-label="화면 바로가기"><a href="#refund">수강료 환불</a><a href="#parking">주차 요금</a><a href="#faq">자주 묻는 질문</a><a href="#departments">담당 부서</a></nav></div></div>
+  <main class="wrap">
+    <section id="refund" class="section" aria-labelledby="refund-title"><div class="section-head"><span class="num">01 / CALCULATOR</span><h2 id="refund-title">수강료 환불 계산</h2></div><p class="section-desc">실제로 낸 수강료를 입력하세요. 시작 전 신청과 진단서·공단 사정은 해당할 때만 선택합니다.</p><div class="card calc-grid"><form id="refund-form" class="fields" novalidate>
+      <div class="field"><label for="course">강습 종류</label><select id="course" class="control"><option value="swimBeginner">수영 초급 · 12회</option><option value="swimIntermediate">수영 중급 · 12회</option><option value="yoga">요가 · 8회</option><option value="aqua">아쿠아로빅 · 8회</option><option value="health">헬스 자유이용</option></select></div>
+      <div class="field"><label for="paid">낸 수강료 (원)</label><input id="paid" class="control" type="number" min="0" step="10" inputmode="numeric" value="60000"><small>강습을 고르면 규정 금액이 들어갑니다. 수정할 수 있습니다.</small></div>
+      <div class="field" id="sessions-field"><label for="sessions">진행된 강습 횟수</label><input id="sessions" class="control" type="number" min="0" max="12" step="1" inputmode="numeric" value="0"><small>결석해도 실제 열린 강습은 포함합니다.</small></div>
+      <div class="field" id="health-start-field" hidden><label for="health-start">이용 시작일</label><input id="health-start" class="control" type="date"></div>
+      <div class="field" id="health-request-field" hidden><label for="health-request">환불 신청일</label><input id="health-request" class="control" type="date"></div>
+      <div class="field full"><label class="check"><input id="before-start" type="checkbox"> 강습 시작일 전날까지 신청</label></div>
+      <div class="field full"><label class="check"><input id="exception" type="checkbox"> 질병·부상 의사 진단서 또는 공단 사정</label><small id="exception-help">해당하면 정기 강습 환불 위약금 10%를 빼지 않습니다.</small></div>
+    </form><div class="result" aria-live="polite"><div class="result-label">예상 환불 금액</div><div id="refund-amount" class="amount">—</div><div id="refund-source" class="source"></div><p id="refund-formula" class="formula"></p><p class="result-note">이 금액은 안내용입니다. 신청 전 고객지원팀(체육시설 내선 2101, 주차 내선 2201)에 확인해 주세요.</p></div></div></section>
+
+    <section id="parking" class="section" aria-labelledby="parking-title"><div class="section-head"><span class="num">02 / CALCULATOR</span><h2 id="parking-title">주차 요금 계산</h2></div><p class="section-desc">한 번의 주차 시간(24시간 이내)을 입력하세요. 감면 대상이 여러 개면 가장 높은 하나만 적용합니다.</p><div class="card calc-grid"><form id="parking-form" class="fields" novalidate>
+      <div class="field full"><label for="lot">주차장</label><select id="lot" class="control"><option value="station">새별역 공영주차장</option><option value="sports">새별체육센터 주차장</option><option value="culture">새별문화센터 주차장</option></select></div>
+      <div class="field"><label for="hours">주차 시간 · 시간</label><input id="hours" class="control" type="number" min="0" max="24" step="1" inputmode="numeric" value="0"></div><div class="field"><label for="minutes">주차 시간 · 분</label><input id="minutes" class="control" type="number" min="0" max="59" step="1" inputmode="numeric" value="0"></div>
+      <div class="field full"><label>감면 대상 (복수 선택 가능)</label><div class="checks" id="discounts"><label class="check"><input type="checkbox" value="disabled"> 장애인 표지 차량·장애인 탑승 · 80%</label><label class="check"><input type="checkbox" value="veteran"> 국가유공자 본인 탑승 · 50%</label><label class="check"><input type="checkbox" value="small"> 경차 · 50%</label><label class="check"><input type="checkbox" value="electric"> 전기·수소차 · 50%</label><label class="check"><input type="checkbox" value="family"> 새별시 다자녀 카드 · 30%</label></div></div>
+      <div class="field full"><label class="check"><input id="facility-confirmed" type="checkbox" disabled> 시설 이용 확인을 받았다</label><small id="facility-help">새별체육센터·새별문화센터 주차장에서만 적용됩니다.</small></div>
+    </form><div class="result parking" aria-live="polite"><div class="result-label">예상 주차 요금</div><div id="parking-amount" class="amount">—</div><div id="parking-source" class="source"></div><p id="parking-formula" class="formula"></p><p class="result-note">이 금액은 안내용입니다. 신청 전 고객지원팀(체육시설 내선 2101, 주차 내선 2201)에 확인해 주세요.</p></div></div></section>
+
+    <section id="faq" class="section" aria-labelledby="faq-title"><div class="section-head"><span class="num">03 / HELP</span><h2 id="faq-title">자주 묻는 질문 검색</h2></div><p class="section-desc">15개 질문의 질문·답·근거·담당 부서를 검색합니다.</p><div class="card"><div class="search-row"><input id="faq-query" class="control" type="search" placeholder="예: 대관, 환불, 감면" aria-label="자주 묻는 질문 검색어"><button id="faq-clear" type="button">지우기</button></div><div id="faq-count" class="faq-count"></div><div id="faq-results" class="faq-list" aria-live="polite"></div></div></section>
+
+    <section id="departments" class="section" aria-labelledby="departments-title"><div class="section-head"><span class="num">04 / CONTACT</span><h2 id="departments-title">담당 부서 안내</h2></div><p class="section-desc">대관, 시설 고장, 사고·분쟁, 과태료는 담당 부서에 문의해 주세요.</p><div class="card"><div class="table-scroll"><table class="dept-table"><thead><tr><th scope="col">문의 내용</th><th scope="col">담당 부서</th><th scope="col">내선 (가상)</th></tr></thead><tbody><tr><td>체육센터 강습 신청·환불·연기·수강료 감면</td><td>고객지원팀 체육시설 담당</td><td>2101</td></tr><tr><td>공영주차장 요금·감면·정기권·사후 감면 환급</td><td>고객지원팀 주차 담당</td><td>2201</td></tr><tr><td>문화센터 강의실·공연장 대관 신청·취소·대관료</td><td>문화센터 운영팀</td><td>2301</td></tr><tr><td>시설 고장·안전 신고</td><td>시설관리팀</td><td>2401</td></tr><tr><td>시설 안 사고, 분쟁, 손해 배상</td><td>경영지원본부 법무 담당</td><td>2501</td></tr><tr><td>개인정보 열람·정정·삭제 요청</td><td>정보화팀 개인정보 담당</td><td>2601</td></tr></tbody></table></div><h3 class="subhead">공단이 처리하지 않는 일</h3><div class="table-scroll"><table class="dept-table"><thead><tr><th scope="col">문의 내용</th><th scope="col">처리 기관</th></tr></thead><tbody><tr><td>주정차 위반 과태료 부과와 이의 신청</td><td>새별시 교통행정과</td></tr><tr><td>주차장 밖 도로의 불법 주정차 신고</td><td>새별시 교통행정과</td></tr></tbody></table></div><p class="note">내선 번호는 모두 가상입니다.</p></div></section>
+
+    <section id="chat" class="section" aria-labelledby="chat-title"><div class="section-head"><span class="num">05 / DEMO</span><h2 id="chat-title">상담 창</h2></div><div class="card"><span class="demo">시범 화면: 정해 둔 답만 보여 줍니다</span><div class="chat-layout"><div class="chat-choices" aria-label="예시 질문"><button class="chat-choice" type="button" data-chat="0" aria-pressed="false">강습 환불은 언제 입금되나요?</button><button class="chat-choice" type="button" data-chat="1" aria-pressed="false">주차 감면을 놓쳤어요.</button><button class="chat-choice" type="button" data-chat="2" aria-pressed="false">대관은 어디에 문의하나요?</button></div><div class="chat-answer" aria-live="polite"><strong>안내 답변</strong><p id="chat-response">왼쪽의 예시 질문을 선택해 주세요.</p><small id="chat-source">입력하거나 전송하는 기능은 없습니다.</small></div></div></div></section>
+  </main>
+  <footer>가상 기관 실습 화면입니다. 계산 결과는 안내용이며 최종 금액은 담당자가 확인합니다.</footer>
+  <script>
+    "use strict";
+    const COURSES={swimBeginner:{name:"수영 초급",fee:60000,total:12},swimIntermediate:{name:"수영 중급",fee:60000,total:12},yoga:{name:"요가",fee:40000,total:8},aqua:{name:"아쿠아로빅",fee:50000,total:8},health:{name:"헬스 자유이용",fee:45000}};
+    const REFUND_RULE="새별시설공단 체육시설 이용 규정";
+    const PARKING_RULE="새별시설공단 공영주차장 운영 지침";
+    const won=n=>Math.trunc(n).toLocaleString("ko-KR")+"원";
+    const floorTen=n=>Math.floor(Math.max(0,n)/10)*10;
+    const validWhole=n=>Number.isSafeInteger(n)&&n>=0;
+    function dateUTC(value){if(!/^\d{4}-\d{2}-\d{2}$/.test(value||""))return null;const [y,m,d]=value.split("-").map(Number);const date=new Date(Date.UTC(y,m-1,d));return date.getUTCFullYear()===y&&date.getUTCMonth()===m-1&&date.getUTCDate()===d?date:null}
+    function calculateRefund({course,paid,sessions=0,beforeStart=false,exception=false,startDate="",requestDate=""}){
+      const c=COURSES[course];if(!c||!validWhole(paid))return {error:"강습과 낸 수강료를 확인해 주세요."};
+      if(course==="health"){
+        const start=dateUTC(startDate),request=dateUTC(requestDate);if(!start||!request)return {error:"이용 시작일과 환불 신청일을 입력해 주세요."};
+        if(start.getUTCFullYear()!==request.getUTCFullYear()||start.getUTCMonth()!==request.getUTCMonth()||request<start)return {error:"같은 달의 이용 시작일과 그 이후 신청일을 입력해 주세요."};
+        const elapsed=Math.round((request-start)/86400000),days=new Date(Date.UTC(request.getUTCFullYear(),request.getUTCMonth()+1,0)).getUTCDate();
+        if(elapsed>15)return {amount:0,formula:"이용 시작일부터 15일이 지난 뒤 신청 → 환불 없음",source:REFUND_RULE+" 제7조 제4항"};
+        const remaining=days-request.getUTCDate(),raw=paid*remaining/days-paid/10,amount=Math.max(0,Math.floor(paid*(10*remaining-days)/(100*days))*10);
+        return {amount,formula:`${won(paid)} × ${remaining}일 ÷ ${days}일 − 위약금 ${won(paid*.1)} = ${won(Math.max(0,raw))} → 10원 미만 버림`,source:REFUND_RULE+" 제7조 제4항·제5항"};
+      }
+      if(!validWhole(sessions)||sessions>c.total)return {error:`진행 횟수는 0~${c.total}회로 입력해 주세요.`};
+      if(beforeStart)return {amount:paid,formula:`강습 시작일 전날까지 신청 → 수강료 ${won(paid)} 전액`,source:REFUND_RULE+" 제7조 제1항 제1호"};
+      if(sessions*2>=c.total)return {amount:0,formula:`${sessions}회 / ${c.total}회 진행 (절반 이상) → 환불 없음`,source:REFUND_RULE+" 제7조 제1항 제3호"};
+      const remaining=c.total-sessions,share=paid*remaining/c.total,penalty=exception?0:paid*.1,raw=share-penalty;
+      const source=REFUND_RULE+" 제7조 제1항 제2호"+(exception?"·제2항 제1호 또는 제2호":"")+"·제5항";
+      const amount=Math.max(0,Math.floor(paid*(exception?remaining*10:remaining*10-c.total)/(c.total*100))*10);
+      return {amount,formula:`${won(paid)} × (${c.total}회 − ${sessions}회) ÷ ${c.total}회${exception?"":` − 위약금 ${won(penalty)}`} = ${won(Math.max(0,raw))} → 10원 미만 버림`,source};
+    }
+    const DISCOUNTS={disabled:{label:"장애인 표지 차량·장애인 탑승",rate:.8,article:"제5조 제1항 제1호"},veteran:{label:"국가유공자 본인 탑승",rate:.5,article:"제5조 제1항 제2호"},small:{label:"경차",rate:.5,article:"제5조 제1항 제3호"},electric:{label:"전기·수소차",rate:.5,article:"제5조 제1항 제4호"},family:{label:"새별시 다자녀 카드",rate:.3,article:"제5조 제1항 제5호"}};
+    function calculateParking({lot,hours,minutes,discounts=[],facilityConfirmed=false}){
+      if(!["station","sports","culture"].includes(lot)||!validWhole(hours)||!validWhole(minutes)||minutes>59||hours*60+minutes>1440)return {error:"주차 시간을 0~24시간 범위로 입력해 주세요."};
+      const total=hours*60+minutes;if(total===0)return {amount:0,formula:"주차 시간 0분 → 요금 없음",source:PARKING_RULE+" 제4조 제1항"};
+      const facility=lot!=="station"&&facilityConfirmed;
+      let units,base,formula,source=PARKING_RULE+" ";
+      if(facility){units=Math.ceil(Math.max(0,total-120)/10);base=Math.min(12000,units*300);formula=`시설 이용 확인: ${Math.min(total,120)}분 무료 + 초과 ${Math.max(0,total-120)}분 (${units}구간 × 300원) = ${won(base)}`;source+="제4조 제2항·제4조 제1항"}
+      else{units=Math.ceil(Math.max(0,total-30)/10);base=Math.min(12000,1000+units*300);formula=`최초 30분 1,000원 + 초과 ${Math.max(0,total-30)}분 (${units}구간 × 300원) = ${won(base)}`;source+="제4조 제1항·제7조 제1항"}
+      if((facility?units*300:1000+units*300)>12000)formula+=" (1일 최대 12,000원 적용)";
+      const applicable=discounts.filter(key=>Object.hasOwn(DISCOUNTS,key)).map(key=>DISCOUNTS[key]).sort((a,b)=>b.rate-a.rate)[0];
+      if(applicable){const rate=Math.round(applicable.rate*100),amount=Math.floor(base*(100-rate)/1000)*10;formula+=` → ${applicable.label} ${rate}% 감면: ${won(base)} × ${100-rate}% = ${won(amount)} (10원 미만 버림)`;source+=`·${applicable.article}·제5조 제2항·제7조 제2항·제7조 제3항`;return {amount,formula,source}}
+      return {amount:base,formula,source};
+    }
+    const FAQ=[
+      ["체육센터 이용 시간은 어떻게 되나요?","매일 06:00부터 22:00까지입니다. 매월 둘째·넷째 일요일은 휴관합니다.","체육시설 이용 규정 제3조","고객지원팀 체육시설 담당(2101)"],
+      ["다음 달 강습은 언제 신청하나요?","매월 20일부터 25일까지 신청합니다. 이번 달 수강생은 15일부터 19일까지 다음 달 같은 강습을 먼저 신청할 수 있습니다.","체육시설 이용 규정 제4조","고객지원팀 체육시설 담당(2101)"],
+      ["수강료 감면 서류는 언제 내나요?","수강 신청을 할 때 냅니다. 신청한 뒤에 낸 서류는 다음 달 강습부터 적용합니다.","체육시설 이용 규정 제6조 제3항","고객지원팀 체육시설 담당(2101)"],
+      ["감면 대상에 두 가지 이상 해당하면 모두 적용되나요?","감면율이 가장 높은 하나만 적용합니다.","체육시설 이용 규정 제6조 제2항, 공영주차장 운영 지침 제5조 제2항","고객지원팀(2101, 2201)"],
+      ["환불금은 언제 들어오나요?","신청일부터 7영업일 안에 본인 명의 계좌로 보냅니다. 신용카드로 냈으면 결제를 취소하는 방법으로 환불합니다.","체육시설 이용 규정 제8조 제2항, 제3항","고객지원팀 체육시설 담당(2101)"],
+      ["강습을 다음 달로 미룰 수 있나요?","강습 시작일 전날까지 신청하면 한 번 연기할 수 있습니다. 시작일 이후에는 질병·부상을 의사 진단서로 증명한 경우에만 남은 횟수를 다음 달로 옮깁니다.","체육시설 이용 규정 제9조","고객지원팀 체육시설 담당(2101)"],
+      ["체육센터에서 잃어버린 물건은 어떻게 찾나요?","시설 안에서 찾은 분실물은 30일 동안 보관합니다.","체육시설 이용 규정 제11조","고객지원팀 체육시설 담당(2101)"],
+      ["나갈 때 주차 감면을 못 받았어요.","출차일부터 14일 안에 증빙과 영수증을 고객지원팀에 내면 감면액만큼 돌려줍니다.","공영주차장 운영 지침 제6조","고객지원팀 주차 담당(2201)"],
+      ["무인 정산기에서도 감면이 되나요?","미리 등록한 차량에만 자동으로 적용합니다. 등록하지 않았으면 출차할 때 증빙을 보여 주거나 14일 안에 사후 환급을 신청합니다.","공영주차장 운영 지침 제5조 제3항, 제6조","고객지원팀 주차 담당(2201)"],
+      ["월 정기권은 얼마인가요?","주간(07:00~20:00) 50,000원, 전일 80,000원입니다. 감면은 장애인 표지 차량에만 50퍼센트 적용합니다.","공영주차장 운영 지침 제4조 제1항, 제5조 제4항","고객지원팀 주차 담당(2201)"],
+      ["체육센터를 이용하면 주차가 무료인가요?","체육센터나 문화센터의 이용 확인을 받으면 그 시설 주차장에서 2시간까지 무료입니다. 2시간을 넘는 시간은 10분마다 300원입니다.","공영주차장 운영 지침 제4조 제2항","고객지원팀 주차 담당(2201)"],
+      ["문화센터 강의실이나 공연장을 대관하고 싶어요.","대관 신청·취소·대관료는 문화센터 운영팀이 안내합니다. 이 화면에서는 대관료를 계산하지 않습니다.","담당 부서 안내","문화센터 운영팀(2301)"],
+      ["대관을 취소하면 수수료가 있나요?","대관 취소 수수료는 문화센터 운영팀에 확인해 주세요. 이 화면의 자료에는 대관 규정이 없습니다.","담당 부서 안내","문화센터 운영팀(2301)"],
+      ["시설이 고장 났어요.","시설 고장과 안전 신고는 시설관리팀이 받습니다.","담당 부서 안내","시설관리팀(2401)"],
+      ["주정차 위반 과태료에 이의를 신청하고 싶어요.","과태료 부과와 이의 신청은 공단이 아니라 새별시 교통행정과가 처리합니다.","공영주차장 운영 지침 제9조 제1호","새별시 교통행정과"]
+    ];
+    function searchFaq(query){const q=query.trim().toLocaleLowerCase("ko-KR");return q?FAQ.filter(row=>row.some(cell=>cell.toLocaleLowerCase("ko-KR").includes(q))):FAQ}
+    if(typeof document!=="undefined"){
+      const $=id=>document.getElementById(id);
+      function showResult(prefix,result){$(prefix+"-amount").textContent=result.error?"입력 확인":won(result.amount);$(prefix+"-amount").classList.toggle("error",!!result.error);$(prefix+"-formula").textContent=result.error||result.formula;$(prefix+"-source").textContent=result.error?"":`근거 · ${result.source}`}
+      function numericInput(id){return $(id).value.trim()===""?NaN:Number($(id).value)}
+      function updateRefund(){showResult("refund",calculateRefund({course:$("course").value,paid:numericInput("paid"),sessions:numericInput("sessions"),beforeStart:$("before-start").checked,exception:$("exception").checked,startDate:$("health-start").value,requestDate:$("health-request").value}))}
+      $("course").addEventListener("change",()=>{const c=COURSES[$("course").value],health=$("course").value==="health";$("paid").value=c.fee;$("sessions").max=c.total||0;$("sessions").value=0;$("sessions-field").hidden=health;$("health-start-field").hidden=!health;$("health-request-field").hidden=!health;$("before-start").disabled=health;$("exception").disabled=health;if(health){$("before-start").checked=false;$("exception").checked=false;$("exception-help").textContent="헬스 자유이용은 규정 제7조 제4항의 별도 계산식을 적용합니다."}else{$("exception-help").textContent="해당하면 정기 강습 환불 위약금 10%를 빼지 않습니다."}updateRefund()});
+      $("refund-form").addEventListener("input",updateRefund);$("refund-form").addEventListener("change",updateRefund);
+      function updateParking(){showResult("parking",calculateParking({lot:$("lot").value,hours:numericInput("hours"),minutes:numericInput("minutes"),discounts:[...document.querySelectorAll('#discounts input:checked')].map(e=>e.value),facilityConfirmed:$("facility-confirmed").checked}))}
+      $("lot").addEventListener("change",()=>{const enabled=$("lot").value!=="station";$("facility-confirmed").disabled=!enabled;if(!enabled)$("facility-confirmed").checked=false;updateParking()});$("parking-form").addEventListener("input",updateParking);$("parking-form").addEventListener("change",updateParking);
+      function renderFaq(){const items=searchFaq($("faq-query").value),target=$("faq-results");target.replaceChildren();$("faq-count").textContent=`검색 결과 ${items.length}개 / 전체 ${FAQ.length}개`;if(!items.length){const empty=document.createElement("div");empty.className="empty";const p=document.createElement("p");p.textContent="일치하는 질문이 없습니다. 담당 부서 표에서 문의할 곳을 확인해 주세요.";const scroll=document.createElement("div");scroll.className="table-scroll";scroll.append(document.querySelector("#departments .dept-table").cloneNode(true));empty.append(p,scroll);target.append(empty);return}items.forEach((row)=>{const article=document.createElement("article");article.className="faq-item";const title=document.createElement("h3");title.textContent=row[0];const answer=document.createElement("p");answer.textContent=row[1];const meta=document.createElement("div");meta.className="faq-meta";meta.textContent=`근거 · ${row[2]}  |  담당 · ${row[3]}`;article.append(title,answer,meta);target.append(article)})}
+      $("faq-query").addEventListener("input",renderFaq);$("faq-clear").addEventListener("click",()=>{$("faq-query").value="";renderFaq();$("faq-query").focus()});
+      const chatAnswers=[["신청일부터 7영업일 안에 본인 명의 계좌로 보냅니다. 신용카드로 냈으면 결제를 취소합니다.","체육시설 이용 규정 제8조 제2항·제3항 · 고객지원팀 체육시설 담당(2101)"],["출차일부터 14일 안에 증빙과 영수증을 고객지원팀에 내면 감면액을 돌려받을 수 있습니다.","공영주차장 운영 지침 제6조 · 고객지원팀 주차 담당(2201)"],["문화센터 강의실·공연장 대관 신청과 취소, 대관료는 문화센터 운영팀에 문의해 주세요.","담당 부서 안내 · 문화센터 운영팀(2301)"]];
+      document.querySelectorAll(".chat-choice").forEach(button=>button.addEventListener("click",()=>{document.querySelectorAll(".chat-choice").forEach(b=>b.setAttribute("aria-pressed",String(b===button)));const [answer,source]=chatAnswers[Number(button.dataset.chat)];$("chat-response").textContent=answer;$("chat-source").textContent=source}));
+      updateRefund();updateParking();renderFaq();
+    }
+  </script>
+</body>
+</html>
